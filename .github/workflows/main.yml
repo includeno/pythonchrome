@@ -44,7 +44,7 @@ jobs:
       - name: tail chrome_version file
         run: tail ./chrome_version >> $GITHUB_ENV
       - name: check chrome_version
-        run: tail chrome_version >> $GITHUB_ENV
+        run:  |
           echo ${{secrets.DOCKER_USERNAME}}
           echo ${{env.ChromeVersion}}
 
