@@ -41,7 +41,7 @@ jobs:
       - name: Sets build date
         run: echo "BUILD_DATE=$(date '+%Y%m%d')" >> $GITHUB_ENV
       - name: tail chrome_version file
-        run: tail chrome_version >> $GITHUB_ENV
+        run: tail chrome_version > $GITHUB_ENV
       
       - name: Publish to Docker Repository
         uses: elgohr/Publish-Docker-Github-Action@master
