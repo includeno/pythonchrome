@@ -29,13 +29,15 @@ jobs:
       - name: Get chrome version
         run: |
           python chromeversion.py
+      - name: Get chrome version
+        id: chromeversion
+        run: |
+          python chromeversion.py
+          echo $(chrome_version)
       - name: Get chrome driver version
         run: |
           python chromedriverversion.py
-      
-      - name: Get chrome driver version
-        run: |
-          python chromedriverversion.py
+
       - name: Output Docker info
         run: docker info
       - name: Sets build date
@@ -47,8 +49,8 @@ jobs:
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: includeno/pythonchrome
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           tags: "latest,${{ env.STATE_RELEASE_VERSION }}"
       - name: The job has succeeded
         if: ${{ success() }}
