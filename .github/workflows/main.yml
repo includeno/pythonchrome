@@ -44,14 +44,9 @@ jobs:
         run: echo "BUILD_DATE=$(date '+%Y%m%d')" >> $GITHUB_ENV
       - name: tail chrome_version file
         run: tail ./chrome_version >> $GITHUB_ENV
+      - name: tail chrome_version file
+        run: tail chrome_version >> $GITHUB_ENV
       
-      - name: Publish to Docker Repository
-        uses: elgohr/Publish-Docker-Github-Action@master
-        with:
-          name: includeno/pythonchrome
-          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          tags: "latest,${{ env.STATE_RELEASE_VERSION }}"
       - name: The job has succeeded
         if: ${{ success() }}
         run: echo "success"
