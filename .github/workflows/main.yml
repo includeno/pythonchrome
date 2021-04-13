@@ -55,7 +55,7 @@ jobs:
           context: .
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          tags: "includeno/pythonchrome:latest,includeno/pythonchrome:${{ env.ChromeVersion }}"
+          tags: "includeno/pythonchrome:latest,includeno/pythonchrome:chrome${{ env.ChromeVersion }}"
           push: true
       - name: The job has succeeded
         if: ${{ success() }}
