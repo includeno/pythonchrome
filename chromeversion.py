@@ -10,7 +10,7 @@ html_origin = res.text
 
 version = re.search('Version:(.*)<', html_origin)
 version_number = (str(version.group(0)).split("<")[0]).split("Version:")[-1]
-version_number=str(version_number).replace(".","_")
+version_number=str(version_number).replace(".","_").replace(" ","")
 print(version_number)
 
 date = re.search('Date:(.*)<', html_origin)
