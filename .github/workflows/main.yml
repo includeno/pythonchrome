@@ -43,7 +43,7 @@ jobs:
       - name: set tag python version
         run: tail ./dockerpythonversion >> $GITHUB_ENV
       - name: set dockerfile python version
-        run: sed 'python:3.9.4c\python:3.9.2' Dockerfile
+        run: python changepythonversion.py
         
       - name: check chrome_version
         run:  |
