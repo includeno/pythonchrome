@@ -9,7 +9,7 @@ res = requests.get(url)
 html_origin = res.text
 
 version = re.search('Version:(.*)<', html_origin)
-version_number=str(version.group(0)).split("<")[0]
+version_number=(str(version.group(0)).split("<")[0]).split("Version:")[-1]
 
 date = re.search('Date:(.*)<', html_origin)
 print(str(date.group(0)).split("<")[0])
@@ -18,5 +18,5 @@ file=re.search('File:(.*)<', html_origin)
 print(str(file.group(0)).split("<")[0])
 filename = "chrome_version"
 outfile = open(filename, "w", encoding='utf-8')
-outfile.write(version_number)
+outfile.write("ChromeVersion="+version_number)
 outfile.close()
