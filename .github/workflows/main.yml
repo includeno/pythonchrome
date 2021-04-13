@@ -49,3 +49,4 @@ jobs:
           tags: "latest,${{ env.STATE_RELEASE_VERSION }}"
       - name: The job has succeeded
         if: ${{ success() }}
+        run: echo "success"
