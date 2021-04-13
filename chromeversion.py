@@ -9,7 +9,9 @@ res = requests.get(url)
 html_origin = res.text
 
 version = re.search('Version:(.*)<', html_origin)
-version_number=(str(version.group(0)).split("<")[0]).split("Version:")[-1]
+version_number = (str(version.group(0)).split("<")[0]).split("Version:")[-1]
+version_number=str(version_number).replace(".","_")
+print(version_number)
 
 date = re.search('Date:(.*)<', html_origin)
 print(str(date.group(0)).split("<")[0])
