@@ -43,6 +43,11 @@ jobs:
       - name: check chrome_version
         run:  |
           echo ${{env.ChromeVersion}}
+      - name: Login Docker Hub
+        run: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       - name: Push to Docker Hub
         id: docker_build
         uses: docker/build-push-action@v2
