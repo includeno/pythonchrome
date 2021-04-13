@@ -33,7 +33,6 @@ jobs:
         id: chromeversion
         run: |
           python chromeversion.py
-          echo ${{steps.chromeversion.outputs}}
       - name: Get chrome driver version
         run: |
           python chromedriverversion.py
@@ -44,9 +43,11 @@ jobs:
         run: echo "BUILD_DATE=$(date '+%Y%m%d')" >> $GITHUB_ENV
       - name: tail chrome_version file
         run: tail ./chrome_version >> $GITHUB_ENV
-      - name: tail chrome_version file
+      - name: check chrome_version
         run: tail chrome_version >> $GITHUB_ENV
-      
+          echo ${{secrets.DOCKER_USERNAME}}
+          echo ${{env.ChromeVersion}}
+
       - name: The job has succeeded
         if: ${{ success() }}
         run: echo "success"
