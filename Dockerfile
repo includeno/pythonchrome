@@ -9,4 +9,4 @@ RUN /bin/sh -c 'mkdir /tools &&wget http://npm.taobao.org/mirrors/chromedriver/8
 
 #https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #下载安装chrome https://blog.csdn.net/weixin_42170439/article/details/100927676
-RUN /bin/sh -c 'cd /tools && wget -P /tools https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && dpkg -i google-chrome-stable_current_amd64.deb'
+RUN /bin/sh -c 'cd /tools && wget -P /tools https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && dpkg -i /tools/google-chrome-stable_current_amd64.deb'
