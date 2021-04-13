@@ -42,7 +42,9 @@ jobs:
         run: tail ./chrome_version >> $GITHUB_ENV
       - name: set tag python version
         run: tail ./dockerpythonversion >> $GITHUB_ENV
-          sed 'python:3.9.4c\${{env.PythonVersion}}' Dockerfile
+      - name: set dockerfile python version
+        run: sed 'python:3.9.4c\python:3.9.2' Dockerfile
+        
       - name: check chrome_version
         run:  |
           echo ${{env.ChromeVersion}}
