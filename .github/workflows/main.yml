@@ -40,6 +40,9 @@ jobs:
         run: echo "BUILD_DATE=$(date '+%Y%m%d')" >> $GITHUB_ENV
       - name: tail from chrome_version to GITHUB_ENV
         run: tail ./chrome_version >> $GITHUB_ENV
+      - name: set tag python version
+        run: tail ./dockerpythonversion >> $GITHUB_ENV
+          sed 'python:3.9.4c\${{env.PythonVersion}}' Dockerfile
       - name: check chrome_version
         run:  |
           echo ${{env.ChromeVersion}}
