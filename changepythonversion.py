@@ -19,7 +19,7 @@ def replace_python_version(infilepos:str,outfilepos:str):
     
     for line in infile:
         if (line.count(str(symbol)) > 0):
-            line=line.replace(symbol,"")
+            line=line.replace(symbol,currentversion)
         outfile.write(line)
     infile.close()
     outfile.close()
