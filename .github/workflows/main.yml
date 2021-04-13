@@ -1,3 +1,4 @@
+# https://docs.github.com/en/actions/guides
 # CI name , it will display on github's action page menu
 name: BuildPythonChromeDockerFile
 # trigger on which this CI should be run
@@ -38,7 +39,7 @@ jobs:
       - name: Output Docker info
         run: docker info
       - name: read chrome_version file
-        run: echo chrome_version
+        run: tail chrome_version
       
       - name: Publish to Docker Repository
         uses: elgohr/Publish-Docker-Github-Action@master
