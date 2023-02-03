@@ -8,12 +8,16 @@ on: # push operation is operate
     branches: [main]
 # CI enviroment settings
 env:
-  STATE_RELEASE_VERSION: "1.0" # chrome version
   TAG_NAME: "pythonchrome"
 jobs:
   build:
     name: 构建,发布
     runs-on: ubuntu-latest # use latest ubuntu to run the job
+    # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
+    strategy:
+      matrix:
+        python_version: [3.8-slim, 3.9.16-slim, 3.10.9-slim]
+        chrome_version: [110.0.5481.30]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
@@ -34,14 +38,15 @@ jobs:
         run: echo "BUILD_DATE=$(date '+%Y%m%d')" >> $GITHUB_ENV
       - name: tail from chrome_version to GITHUB_ENV
         run: tail ./chrome_version >> $GITHUB_ENV
-      - name: set dockerfile python version
-        run: python changepythonversion.py
       - name: set tag python version
         run: tail ./dockerpythonversion >> $GITHUB_ENV
       
       - name: check chrome_version
         run:  |
-          echo ${{env.ChromeVersion}}
+          echo ${{matrix.chrome_version}}
+      - name: check python_version
+        run:  |
+          echo ${{matrix.python_version}}
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
@@ -55,8 +60,8 @@ jobs:
           context: .
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          build-args: CHROME_DRIVER_VERSION=${{env.ChromeVersion}}
-          tags: "includeno/${{ env.TAG_NAME }}:latest,includeno/${{ env.TAG_NAME }}:${{ env.PythonVersion }}chrome${{ env.ChromeVersion }}"
+          build-args: PYTHON_VERSION=${{matrix.python_version}},CHROME_DRIVER_VERSION=${{matrix.chrome_version}}
+          tags: "includeno/${{ env.TAG_NAME }}:${{matrix.python_version}}.latest,includeno/${{ env.TAG_NAME }}:${{matrix.python_version}}.chrome${{matrix.chrome_version}}"
           push: true
       - name: The job has succeeded
         if: ${{ success() }}

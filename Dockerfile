@@ -1,4 +1,5 @@
-FROM python:3.9.4
+ARG  PYTHON_VERSION=3.9.16
+FROM python:${PYTHON_VERSION}
 
 WORKDIR /tools
 #Ubuntu系统
