@@ -16,8 +16,8 @@ jobs:
     # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
     strategy:
       matrix:
-        python_version: [3.6,3.6.15,3.7,3.7.16,3.8,3.8.16,3.9,3.9.16,3.10, 3.10.9]
-        chrome_version: [110.0.5481.30]
+        python_version: ["3.6", "3.6.15", "3.7", "3.7.16", "3.8", "3.8.16", "3.9", "3.9.16", "3.10" , "3.10.9"]
+        chrome_version: ["110.0.5481.30"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
