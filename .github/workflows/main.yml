@@ -60,7 +60,10 @@ jobs:
           context: .
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          build-args: PYTHON_VERSION=${{matrix.python_version}},CHROME_DRIVER_VERSION=${{matrix.chrome_version}}
+          build-args: |
+            PYTHON_VERSION=${{matrix.python_version}}
+            CHROME_DRIVER_VERSION=${{matrix.chrome_version}}
+          # tag 不允许出现-
           tags: "includeno/${{ env.TAG_NAME }}:${{matrix.python_version}}.latest,includeno/${{ env.TAG_NAME }}:${{matrix.python_version}}.chrome${{matrix.chrome_version}}"
           push: true
       - name: The job has succeeded
