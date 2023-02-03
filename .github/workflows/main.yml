@@ -27,13 +27,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Get chrome version
-        run: |
-          python chromeversion.py
-
-      - name: Get chrome driver version
-        run: |
-          python chromedriverversion.py
 
       - name: Output Docker info
         run: docker info
@@ -46,23 +39,23 @@ jobs:
       - name: set tag python version
         run: tail ./dockerpythonversion >> $GITHUB_ENV
       
-        
       - name: check chrome_version
         run:  |
           echo ${{env.ChromeVersion}}
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      #版本号第一位不允许空格
+      #版本号第一位不允许空格 https://github.com/marketplace/actions/docker-build-push-action
       - name: Push to Docker Hub
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          build-args: CHROME_DRIVER_VERSION=${{env.ChromeVersion}}
           tags: "includeno/${{ env.TAG_NAME }}:latest,includeno/${{ env.TAG_NAME }}:${{ env.PythonVersion }}chrome${{ env.ChromeVersion }}"
           push: true
       - name: The job has succeeded
