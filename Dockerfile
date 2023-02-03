@@ -1,5 +1,5 @@
 ARG  PYTHON_VERSION=3.9.16
-FROM python:${PYTHON_VERSION}
+FROM python:${PYTHON_VERSION}-slim
 
 WORKDIR /tools
 #Ubuntu系统

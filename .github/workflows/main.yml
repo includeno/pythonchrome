@@ -16,7 +16,7 @@ jobs:
     # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
     strategy:
       matrix:
-        python_version: [3.8-slim, 3.9.16-slim, 3.10.9-slim]
+        python_version: [3.8, 3.9.16, 3.10.9]
         chrome_version: [110.0.5481.30]
     steps:
       - uses: actions/checkout@v2
