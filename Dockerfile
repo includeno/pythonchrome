@@ -9,6 +9,6 @@ RUN /bin/sh -c 'apt-get update  && apt-get upgrade -y  && apt-get install wget -
 RUN /bin/sh -c 'mkdir /tools && cd /tools && wget -P /tools https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && dpkg -i google-chrome-stable_current_amd64.deb'
 
 #下载安装chrome驱动: 位置/tools
-ARG CHROME_DRIVER_VERSION=89.0.4389.23
+ARG CHROME_DRIVER_VERSION=110.0.5481.30
 RUN /bin/sh -c 'cd /tools && chmod 755 /tools &&wget http://npm.taobao.org/mirrors/chromedriver/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip &&unzip -d /tools chromedriver_linux64.zip'
 
