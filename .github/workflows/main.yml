@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         python_version: ["3.6", "3.6.15", "3.7", "3.7.16", "3.8", "3.8.16", "3.9", "3.9.16", "3.10" , "3.10.9"]
-        chrome_version: ["110.0.5481.77"]
+        chrome_version: ["111.0.5563.19"]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
