@@ -38,8 +38,8 @@ def search(driver,keyword):
             movie_url = link.get_attribute("href")
             print("movie:",keyword, movie_url)
 
-#driver = webdriver.Chrome(options=options,executable_path='/tools/chromedriver')
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(options=options,executable_path='/tools/chromedriver')
+#driver = webdriver.Chrome(options=options)
 # 打开IMDB网站
 driver.get("https://www.imdb.com/")
 
