@@ -1,4 +1,4 @@
-FROM includeno/pythonchrome:3.9.16.chrome109.0.5414.25
+FROM includeno/pythonchrome:3.9.16.chrome110.0.5481.77
 
 WORKDIR /app
 
