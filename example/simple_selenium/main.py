@@ -3,6 +3,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service
+
+service = Service('/tools/chromedriver')
+service.start()
+
 
 # 创建Chrome浏览器实例
 options = webdriver.ChromeOptions()
@@ -38,7 +43,7 @@ def search(driver,keyword):
             movie_url = link.get_attribute("href")
             print("movie:",keyword, movie_url)
 
-driver = webdriver.Chrome(options=options,executable_path='/tools/chromedriver')
+driver = webdriver.Remote(service.service_url,options=options)
 #driver = webdriver.Chrome(options=options)
 # 打开IMDB网站
 driver.get("https://www.imdb.com/")
