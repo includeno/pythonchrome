@@ -1,5 +1,0 @@
-requests
-requests-toolbelt
-Flask
-selenium
-Flask-Cors
