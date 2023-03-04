@@ -2,8 +2,76 @@ ARG  PYTHON_VERSION=3.9.16
 FROM python:${PYTHON_VERSION}-slim
 
 WORKDIR /tools
-#Ubuntu系统
-RUN /bin/sh -c 'apt-get update  && apt-get upgrade -y  && apt-get install wget -y && apt-get install git -y &&apt-get install unzip  -y  && apt-get install fonts-liberation  -y  && apt-get install libasound2  -y  && apt-get install libatk-bridge2.0-0  -y  && apt-get install libatk1.0-0  -y  && apt-get install libatspi2.0-0  -y  && apt-get install libcairo2  -y && apt-get install libcups2  -y && apt-get install libdbus-1-3  -y && apt-get install libdrm2  -y && apt-get install libgbm1  -y && apt-get install libgdk-pixbuf2.0-0  -y && apt-get install libglib2.0-0  -y && apt-get install libgtk-3-0  -y && apt-get install libnspr4  -y && apt-get install libnss3  -y && apt-get install libpango-1.0-0  -y && apt-get install libxcomposite1  -y && apt-get install libxdamage1  -y && apt-get install libxfixes3  -y && apt-get install libxkbcommon0  -y && apt-get install libxshmfence1  -y && apt-get install xdg-utils  -y && apt-get install libu2f-udev  -y '
+#debian https://packages.debian.org/bullseye/chromium
+RUN apt-get update && apt-get install -y \
+    wget \
+    git \
+    unzip \
+    fonts-liberation \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libatomic1 \
+    libatspi2.0-0 \
+    libbrotli1 \
+    libc6 \
+    libdouble-conversion3 \
+    libevent-2.1-7 \
+    libexpat1 \
+    libflac8 \
+    libfontconfig1 \
+    libfreetype6 \
+    libgcc-s1 \
+    libjpeg62-turbo \
+    libjsoncpp24 \
+    liblcms2-2 \
+    libminizip1 \
+    libcups2 \
+    libdbus-1-3 \
+    libdrm2 \
+    libgbm1 \
+    libgtk-3-0 \
+    libcairo2 \
+    #    libgtk-4-1 \
+    libnspr4 \
+    libnss3 \
+    libopenjp2-7  \
+    libopus0  \
+    libpng16-16 \
+    libpulse0 \
+    libre2-9 \
+    libsnappy1v5 \
+    libstdc++6 \
+    libwebp6 \
+    libwebpdemux2 \
+    libwebpmux3 \
+    libwoff1  \
+    libx11-6 \
+    libxcb1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxkbcommon0 \
+    libxml2 \
+    libxnvctrl0 \
+    libxrandr2 \
+    libxslt1.1 \
+    libxtst6 \
+    zlib1g \
+    libwayland-client0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxkbcommon0 \
+    libxrandr2 \
+    xdg-utils \
+    libu2f-udev \
+    libvulkan1 \
+    libgdk-pixbuf2.0-0 \
+    libglib2.0-0 \
+    libpango-1.0-0 \
+    libxshmfence1
 
 #下载安装chrome: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #参考:https://blog.csdn.net/weixin_42170439/article/details/100927676
