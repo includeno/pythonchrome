@@ -6,16 +6,15 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # 创建Chrome浏览器实例
 options = webdriver.ChromeOptions()
-options.add_argument('--headless')
-options.add_argument('--disable-gpu')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--disable-extensions')
+options.add_argument('--disable-gpu')
+#options.add_argument('--headless')
 options.add_argument('blink-settings=imagesEnabled=false')
 options.add_argument('--disable-software-rasterizer')
 
 def get_keywords():
-    
     return ['It Takes Two','A Few Good Men','Avatar: The Way of Water']
 
 def search(driver,keyword):
@@ -25,7 +24,7 @@ def search(driver,keyword):
     search_box.send_keys(Keys.RETURN)
 
     # 等待搜索结果页面加载完成
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 20)
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, "ipc-metadata-list-summary-item")))
 
     # 获取搜索结果中第一个电影的链接
