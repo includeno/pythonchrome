@@ -82,5 +82,5 @@ RUN /bin/sh -c 'cd /tools && chmod 755 /tools && wget -P /tools https://dl.googl
 #下载安装chrome驱动: 位置/tools
 #http://chromedriver.storage.googleapis.com/index.html
 ARG CHROME_DRIVER_VERSION=110.0.5481.30
-RUN /bin/sh -c 'cd /tools && chmod 755 /tools &&wget http://npm.taobao.org/mirrors/chromedriver/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip &&unzip -d /tools chromedriver_linux64.zip && rm -rf /tools/chromedriver_linux64.zip && mv chromedriver /usr/local/bin/ && chmod 777 /usr/local/bin/chromedriver && /usr/local/bin/chromedriver --version'
+RUN /bin/sh -c 'cd /tools && chmod 755 /tools &&wget http://npm.taobao.org/mirrors/chromedriver/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip &&unzip -d /tools chromedriver_linux64.zip && rm -rf /tools/chromedriver_linux64.zip && cp chromedriver /usr/local/bin/chromedriver && chmod 777 /usr/local/bin/chromedriver && /usr/local/bin/chromedriver --version'
 
