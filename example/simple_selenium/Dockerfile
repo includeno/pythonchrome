@@ -68,12 +68,12 @@ RUN apt-get update && apt-get install -y \
     libxshmfence1
 
 # 安装 Firefox 和驱动
-RUN apt-get update && \
-    apt-get install -y firefox-esr && \
-    apt-get install -y wget && \
-    wget -q https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz && \
-    tar -xzf geckodriver-v0.29.1-linux64.tar.gz -C /usr/local/bin && \
-    rm geckodriver-v0.29.1-linux64.tar.gz
+RUN apt-get update                             \
+ && apt-get install -y --no-install-recommends \
+    ca-certificates curl firefox-esr           \
+ && rm -fr /var/lib/apt/lists/*                \
+ && curl -L https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz | tar xz -C /usr/local/bin \
+ && apt-get purge -y ca-certificates curl
 
 # 设置无头模式
 ENV MOZ_HEADLESS=1
