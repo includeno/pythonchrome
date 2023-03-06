@@ -86,5 +86,4 @@ ADD . /app
 # Install pip requirements
 RUN /bin/sh -c ' cd /app && python -m pip install -r /app/requirements.txt '
 
-CMD google-chrome --headless --no-sandbox --disable-dev-shm-usage --disable-gpu 
-# && python main.py
+CMD python main.py
