@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
-service = Service('/usr/bin/chromedriver')
+service = Service('/usr/local/bin/geckodriver')
 service.start()
 
 # 创建Chrome浏览器实例

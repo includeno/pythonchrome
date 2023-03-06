@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
-service = Service('/usr/bin/chromedriver')
+service = Service('/usr/local/bin/geckodriver')
 service.start()
 
 # 创建Chrome浏览器实例
@@ -14,7 +14,7 @@ options.add_argument('--disable-extensions')
 options.add_argument('--disable-gpu')
 
 # 创建Chrome浏览器实例
-driver = webdriver.Chrome(options=options,service=service)
+driver = webdriver.Firefox(options=options,service=service)
 
 # 打开Google网站
 driver.get('https://www.google.com')

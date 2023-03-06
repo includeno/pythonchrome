@@ -1,14 +1,14 @@
 from selenium import webdriver
 
 # 设置Chrome浏览器选项
-options = webdriver.ChromeOptions()
+options = webdriver.FirefoxOptions()
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--headless')
-options.binary_location = '/usr/bin/google-chrome'
+options.binary_location = '/usr/local/bin/geckodriver'
 
 # 创建Chrome浏览器实例
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Firefox(options=options)
 
 # 打开Google网站
 driver.get('https://www.google.com')
