@@ -14,15 +14,11 @@ RUN apt-get update && apt-get install -y \
     libatspi2.0-0 \
     libbrotli1 \
     libc6 \
-    libdouble-conversion3 \
-    libevent-2.1-7 \
     libexpat1 \
     libflac8 \
     libfontconfig1 \
     libfreetype6 \
-    libgcc-s1 \
     libjpeg62-turbo \
-    libjsoncpp24 \
     liblcms2-2 \
     libminizip1 \
     libcups2 \
@@ -38,7 +34,6 @@ RUN apt-get update && apt-get install -y \
     libopus0  \
     libpng16-16 \
     libpulse0 \
-    libre2-9 \
     libsnappy1v5 \
     libstdc++6 \
     libwebp6 \
