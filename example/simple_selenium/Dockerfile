@@ -67,17 +67,16 @@ RUN apt-get update && apt-get install -y \
     libpango-1.0-0 \
     libxshmfence1
 
-# 安装必要的软件包和Chrome浏览器
-RUN apt-get update && apt-get install -y wget gnupg2 curl unzip
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
-RUN apt-get update && apt-get install -y google-chrome-stable
+RUN apt-get install -y unzip && \
+    curl -Lo "/tmp/chromedriver.zip" "https://chromedriver.storage.googleapis.com/109.0.5414.74/chromedriver_linux64.zip" && \
+    curl -Lo "/tmp/chrome-linux.zip" "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F1070081%2Fchrome-linux.zip?alt=media" && \
+    unzip /tmp/chromedriver.zip -d /opt/ && \
+    unzip /tmp/chrome-linux.zip -d /opt/
 
-# 安装Chrome驱动
-RUN CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
-    wget -q https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip && \
-    unzip chromedriver_linux64.zip -d /usr/bin && \
-    rm chromedriver_linux64.zip
+RUN apt-get install atk cups-libs gtk3 libXcomposite alsa-lib \
+    libXcursor libXdamage libXext libXi libXrandr libXScrnSaver \
+    libXtst pango at-spi2-atk libXt xorg-x11-server-Xvfb \
+    xorg-x11-xauth dbus-glib dbus-glib-devel -y
 
 WORKDIR /app
 
