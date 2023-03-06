@@ -67,22 +67,16 @@ RUN apt-get update && apt-get install -y \
     libpango-1.0-0 \
     libxshmfence1
 
-# 安装必要的软件包和Chrome浏览器
-RUN apt-get update && apt-get install -y wget gnupg2 curl unzip
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
-RUN apt-get update && apt-get install -y google-chrome-stable
+# 安装 Firefox 和驱动
+RUN apt-get update && \
+    apt-get install -y firefox-esr && \
+    apt-get install -y wget && \
+    wget -q https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz && \
+    tar -xzf geckodriver-v0.29.1-linux64.tar.gz -C /usr/local/bin && \
+    rm geckodriver-v0.29.1-linux64.tar.gz
 
-# 安装Chrome驱动
-RUN CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
-    wget -q https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip && \
-    unzip chromedriver_linux64.zip -d /usr/bin && \
-    rm chromedriver_linux64.zip
-
-# 设置Chrome无头模式
-ENV DISPLAY=:99
-RUN apt-get install -y xvfb
-RUN Xvfb :99 -screen 0 1024x768x16 &
+# 设置无头模式
+ENV MOZ_HEADLESS=1
 
 WORKDIR /app
 

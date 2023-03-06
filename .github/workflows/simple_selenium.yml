@@ -1,14 +1,14 @@
 # https://docs.github.com/en/actions/guides
 # CI name , it will display on github's action page menu
-name: Build Example python_selenium_beta Docker Image
+name: Build Example python_selenium firefox Docker Image
 # trigger on which this CI should be run
 on: # push operation is operate
   push:
     # here since my repository branch is named `main` , you should follow your own repository like `master`
-    branches: [build_beta_image]
+    branches: [build_firefox_image]
 # CI enviroment settings
 env:
-  TAG_NAME: "python_selenium_beta"
+  TAG_NAME: "python_selenium_firefox"
   VERSION: "0.1"
 jobs:
   build:
